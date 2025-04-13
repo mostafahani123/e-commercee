@@ -106,7 +106,7 @@ namespace e_commercee.Areas.Dashboard.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Image")] Product product, IFormFile Image)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile Image)
         {
             if (id != product.Id)
             {
@@ -136,10 +136,10 @@ namespace e_commercee.Areas.Dashboard.Controllers
                         {
                             await Image.CopyToAsync(stream);
                         }
-                        oldProduct.Image = $"/img/products/{oldProduct}";
+                        oldProduct.Image = $"/img/products/{ImageName}";
                     }
-                    oldProduct.Name = oldProduct.Name;
-                    oldProduct.Description = oldProduct.Description;
+                    oldProduct.Name = product.Name;
+                    oldProduct.Description = product.Description;
 
 
                     _context.Update(oldProduct);

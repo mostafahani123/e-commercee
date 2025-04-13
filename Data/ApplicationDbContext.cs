@@ -1,4 +1,5 @@
 ﻿using e_commercee.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,12 @@ namespace e_commercee.Data
             : base(options)
         {
         }
-
+        /// <summary>
+        /// Domain Model
+        /// </summary>
         public DbSet<Product> Products { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public IdentityUser User { get; set; }
+
     }
 }
