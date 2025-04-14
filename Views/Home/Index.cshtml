@@ -23,11 +23,14 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder">@product.Name</h5>
                            <p>@product.Description</p>
+                           <h3>@product.Price</h3>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                            <div  class="text-center">
+                                <a asp-Controller ="Cart" asp-action="AddtoCart" asp-route-productId="@product.Id" class="btn btn-outline-dark mt-auto">Add To Cart</a>
+                            </div>
                     </div>
                 </div>
             

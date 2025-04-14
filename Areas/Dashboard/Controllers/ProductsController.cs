@@ -139,6 +139,7 @@ namespace e_commercee.Areas.Dashboard.Controllers
                         oldProduct.Image = $"/img/products/{ImageName}";
                     }
                     oldProduct.Name = product.Name;
+                    oldProduct.Price = product.Price;
                     oldProduct.Description = product.Description;
 
 

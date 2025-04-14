@@ -1,0 +1,99 @@
+﻿@model Address
+@{
+  List<Address> addresses = ViewBag.Addresses;
+}
+<div class="col-lg-5">
+
+    <div class="row">
+        <div class="col-md-12">
+           @foreach (var addres in addresses)
+            {
+                <h5>@addres.User.UserName</h5>
+                <p>@addres.AddressLine, @addres.City - @addres.state - @addres.PinCode</p>
+            }
+            </div>
+    </div>
+    <div class="card bg-primary text-white rounded-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">Card details</h5>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                     class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+            </div>
+
+            <p class="small mb-2">Card type</p>
+            <a href="#!" type="submit" class="text-white">
+                <i class="fab fa-cc-mastercard fa-2x me-2"></i>
+            </a>
+            <a href="#!" type="submit" class="text-white">
+                <i class="fab fa-cc-visa fa-2x me-2"></i>
+            </a>
+            <a href="#!" type="submit" class="text-white">
+                <i class="fab fa-cc-amex fa-2x me-2"></i>
+            </a>
+            <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+
+            <form class="mt-4" asp-action="Index">
+                <div asp-validation-summary="ModelOnly" data-mdb-input-init class="text-danger">
+                  
+                </div>
+
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                    <input asp-for="AddressLine" type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                           placeholder="Address" />
+                    <label asp-for="AddressLine" class="form-label">Address</label>
+                    <span asp-validation-for="AddressLine" class="text-danger"></span>
+                </div>
+
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+
+
+
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <input asp-for="City" type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                               placeholder="City" />
+                        <label asp-for="City" class="form-label">City</label>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                        <div data-mdb-input-init class="form-outline form-white mb-4">
+                            <input asp-for="state" type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                   placeholder="state" />
+                            <label asp-for="state" class="form-label">state</label>
+                            <span asp-validation-for="state" class="text-danger"></span>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline form-white mb-4">
+                            <div data-mdb-input-init class="form-outline form-white mb-4">
+                                <input asp-for="AddressLine" type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                       placeholder="Cardholder's Name" />
+                                <label asp-for="AddressLine" class="form-label">Address</label>
+                                <span asp-validation-for="AddressLine" class="text-danger"></span>
+                        </div>
+
+                     <div data-mdb-input-init class="form-outline form-white mb-4">
+                    </div>
+
+            </form>
+
+            <hr class="my-4">
+
+
+
+            <div class="d-flex justify-content-between mb-4">
+                <p class="mb-2">Total Price</p>
+                <p class="mb-2">$@ViewBag.TotalCost</p>
+            </div>
+
+            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-block btn-lg">
+                <div class="d-flex justify-content-between">
+                    <span>$@ViewBag.TotalCost</span>
+                    <span><a class="btn btn-dark" asp-controller="CheckOut" asp-action="Index"> Checkout</a> <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                </div>
+            </button>
+
+        </div>
+    </div>
+
+</div>
