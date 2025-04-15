@@ -1,18 +1,29 @@
 ﻿@model Address
 @{
-  List<Address> addresses = ViewBag.Addresses;
+    List<Address> addreses = ViewBag.Addresses;
 }
-<div class="col-lg-5">
 
-    <div class="row">
-        <div class="col-md-12">
-           @foreach (var addres in addresses)
-            {
-                <h5>@addres.User.UserName</h5>
-                <p>@addres.AddressLine, @addres.City - @addres.state - @addres.PinCode</p>
-            }
+
+<div class="row">
+               @foreach(var Address in addreses)
+    {
+    <div class="container"> 
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@Address.User.UserName</h5>
+                <p class="card-text">@Address.AddressLine ,@Address.City , @Address.state , @Address.PinCode</p>
+                <a href="#" class="btn btn-primary">Deliver here</a>
             </div>
+        </div>
     </div>
+        }
+</div>
+
+
+
+<div>
+
     <div class="card bg-primary text-white rounded-3">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -66,10 +77,10 @@
 
                         <div data-mdb-input-init class="form-outline form-white mb-4">
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input asp-for="AddressLine" type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                                       placeholder="Cardholder's Name" />
-                                <label asp-for="AddressLine" class="form-label">Address</label>
-                                <span asp-validation-for="AddressLine" class="text-danger"></span>
+                                <input asp-for="PinCode" type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                       placeholder="PinCode" />
+                                <label asp-for="PinCode" class="form-label">PinCode</label>
+                                <span asp-validation-for="PinCode" class="text-danger"></span>
                         </div>
 
                      <div data-mdb-input-init class="form-outline form-white mb-4">
@@ -81,19 +92,22 @@
 
 
 
-            <div class="d-flex justify-content-between mb-4">
-                <p class="mb-2">Total Price</p>
-                <p class="mb-2">$@ViewBag.TotalCost</p>
-            </div>
+         
 
             <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-block btn-lg">
                 <div class="d-flex justify-content-between">
-                    <span>$@ViewBag.TotalCost</span>
-                    <span><a class="btn btn-dark" asp-controller="CheckOut" asp-action="Index"> Checkout</a> <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                    <span>-></span>
+                    <span><button class="btn btn-dark" value="Create"> Create</button> <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                 </div>
             </button>
 
         </div>
     </div>
 
+
 </div>
+
+
+
+
+

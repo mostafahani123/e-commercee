@@ -68,11 +68,48 @@
                                
 
                             </div>
-                           
 
+                         
                         </div>
 
                     </div>
+
+
+                </div>
+
+            </div>
+            <div class="card bg-primary text-white rounded-3">
+                <div class="card-body">
+
+                    <p class="small mb-2">Card type</p>
+                    <a href="#!" type="submit" class="text-white">
+                        <i class="fab fa-cc-mastercard fa-2x me-2"></i>
+                    </a>
+                    <a href="#!" type="submit" class="text-white">
+                        <i class="fab fa-cc-visa fa-2x me-2"></i>
+                    </a>
+                    <a href="#!" type="submit" class="text-white">
+                        <i class="fab fa-cc-amex fa-2x me-2"></i>
+                    </a>
+                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+
+
+                    <hr class="my-4">
+
+
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">Total Price</p>
+                        <p class="mb-2">$@ViewBag.TotalCost</p>
+                    </div>
+
+                    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-block btn-lg">
+                        <div class="d-flex justify-content-between">
+                            <span>$@ViewBag.TotalCost</span>
+                            <span><a class="btn btn-dark" asp-controller="CheckOut" asp-action="Index"> Checkout</a> <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                    </button>
+
                 </div>
             </div>
         </div>
