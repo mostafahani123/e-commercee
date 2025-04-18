@@ -1,0 +1,38 @@
+﻿@model Order
+
+
+<div class="col-md-4 mb-2">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Id</h5>
+            <p class="card-text"></p>
+            <h5 class="card-title">Address:</h5>
+            <p class="card-text">@Model.Address.AddressLine @Model.Address.City @Model.Address.state - @Model.Address.PinCode</p>
+        </div>
+        <div>
+            <h5>Order Amount: </h5>
+            <p>$@Model.Amount</p>
+        </div>
+        <div>
+            <h5>Status: </h5>
+            <p>@Model.Status</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach(var orderProduct in Model.OrderProducts){
+            <div class="card" style="width: 18rem;">
+                <a asp-controller="Products"asp-action="Details" asp-route-id="@orderProduct.ProductId"></a>
+                    <img class="card-img-top" src="@orderProduct.Product.Image" alt="@orderProduct.Product.Name">
+                <div class="card-body">
+                        <h5 class="card-title">@orderProduct.Product.Name</h5>
+                        <h5 class="card-title">@orderProduct.Price</h5>
+                        <h5 class="card-title">@orderProduct.Qty</h5>
+                        <td><strong>$@(@orderProduct.Price * @orderProduct.Qty)</strong></td>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+   
+</div>

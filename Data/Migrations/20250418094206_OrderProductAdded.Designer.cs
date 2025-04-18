@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_commercee.Data;
 
@@ -11,9 +12,11 @@ using e_commercee.Data;
 namespace e_commercee.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250418094206_OrderProductAdded")]
+    partial class OrderProductAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,13 +326,7 @@ namespace e_commercee.Data.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Qty")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -464,7 +461,7 @@ namespace e_commercee.Data.Migrations
             modelBuilder.Entity("e_commercee.Models.OrderProduct", b =>
                 {
                     b.HasOne("e_commercee.Models.Order", "Order")
-                        .WithMany("OrderProducts")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -478,11 +475,6 @@ namespace e_commercee.Data.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("e_commercee.Models.Order", b =>
-                {
-                    b.Navigation("OrderProducts");
                 });
 #pragma warning restore 612, 618
         }

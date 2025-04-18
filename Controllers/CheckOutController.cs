@@ -28,6 +28,50 @@ namespace e_commercee.Controllers
             ViewBag.Addresses = addresses;
             return View();
         }
+
+        public async Task<IActionResult> Confirm(int addressId)
+        {
+            var address = await _context.Address.Where(x => x.Id == addressId).FirstOrDefaultAsync();
+            if(address == null)
+            {
+                return BadRequest();
+            }
+            var currentuser = await _userManager.GetUserAsync(HttpContext.User);
+            int orderCost = 0;
+            var carts = await _context.Carts
+                .Include(x=>x.Product)
+                .Where(x => x.UserId == currentuser.Id).ToListAsync();
+            foreach (var cart in carts)
+            {
+                orderCost += (cart.Product.Price * cart.Qty);
+            }
+            var order = new Order()
+            {
+                AddressId = addressId,
+                CreatedAt = DateTime.UtcNow,
+                Status = "Order placed",
+                UserId = currentuser.Id,
+                Amount = orderCost,
+
+
+            };
+
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+
+            foreach (var cart in carts)
+            {
+                var orderProduct = new OrderProduct
+                {
+                    ProductId = cart.ProductId,
+                    OrderId  =order.Id,
+                    Price = cart.Product.Price,
+                    Qty = cart.Qty,
+                };
+                _context.Add(orderProduct);
+            }
+            return RedirectToAction("Thank You !");
+        }
         [HttpPost]
         public async Task<IActionResult> Index(Address address)
         {
