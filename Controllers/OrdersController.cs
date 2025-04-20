@@ -22,8 +22,9 @@ namespace e_commercee.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var order = await _Context.Orders
-                .Include (x=>x.OrderProducts)
-                .ThenInclude(x=>x.Product)
+               
+               .Include(o => o.OrderProducts)
+            .ThenInclude(op => op.Product)
                 .Include(x=>x.Address)
                 .FirstOrDefaultAsync(x=>x.Id == id);
 

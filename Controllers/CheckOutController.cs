@@ -9,9 +9,9 @@ namespace e_commercee.Controllers
     public class CheckOutController : Controller
     {
         public readonly ApplicationDbContext _context;
-        public readonly UserManager<IdentityUser> _userManager;
+        public readonly UserManager<ApplicationUser> _userManager;
 
-        public CheckOutController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public CheckOutController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -32,14 +32,14 @@ namespace e_commercee.Controllers
         public async Task<IActionResult> Confirm(int addressId)
         {
             var address = await _context.Address.Where(x => x.Id == addressId).FirstOrDefaultAsync();
-            if(address == null)
+            if (address == null)
             {
                 return BadRequest();
             }
             var currentuser = await _userManager.GetUserAsync(HttpContext.User);
             int orderCost = 0;
             var carts = await _context.Carts
-                .Include(x=>x.Product)
+                .Include(x => x.Product)
                 .Where(x => x.UserId == currentuser.Id).ToListAsync();
             foreach (var cart in carts)
             {
@@ -64,13 +64,13 @@ namespace e_commercee.Controllers
                 var orderProduct = new OrderProduct
                 {
                     ProductId = cart.ProductId,
-                    OrderId  =order.Id,
+                    OrderId = order.Id,
                     Price = cart.Product.Price,
                     Qty = cart.Qty,
                 };
                 _context.Add(orderProduct);
             }
-            return RedirectToAction("Thank You !");
+            return View("Confirm");
         }
         [HttpPost]
         public async Task<IActionResult> Index(Address address)

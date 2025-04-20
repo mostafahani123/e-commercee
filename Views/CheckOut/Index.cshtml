@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@Address.User.UserName</h5>
                         <p class="card-text">@Address.AddressLine ,@Address.City , @Address.state , @Address.PinCode</p>
-                        <a asp-controller="Checkout" asp-action="Confirm" asp-addressId="@Address.Id" class="btn btn-primary">Deliver here</a>
+                        <a asp-controller="CheckOut" asp-action="Confirm" asp-route-addressId="@Address.Id" class="btn btn-primary">Deliver here</a>
                     </div>
                 </div>
             </div>

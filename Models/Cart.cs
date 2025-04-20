@@ -9,7 +9,7 @@ namespace e_commercee.Models
         public Product Product { get; set; }
         public int Qty { get; set; }
         public string UserId { get; set; }
-        public IdentityUser User {get; set;}
+        public ApplicationUser User {get; set;}
 
     }
 }

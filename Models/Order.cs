@@ -6,7 +6,7 @@ namespace e_commercee.Models
     {
         public int Id { get; set; }
         public string UserId { get; set; }
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
         public Address Address { get; set; }
         public string Status { get; set; }
         public int AddressId { get; set; }

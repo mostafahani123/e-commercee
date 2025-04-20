@@ -11,8 +11,8 @@ namespace e_commercee.Controllers
     public class CartController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public readonly UserManager<IdentityUser> _userManager;
-        public CartController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public readonly UserManager<ApplicationUser> _userManager;
+        public CartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
             _context = context;
