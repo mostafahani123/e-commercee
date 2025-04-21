@@ -1,27 +1,20 @@
-﻿@using e_commercee.Viewmodels;
-@model HomeViewModel
-
-@{
-    ViewData["Title"] = "Home Page";
-}
-
+﻿@model List<Product>
 @section pageTitle {
     <!-- Header-->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Home</h1>
+            <h1 class="display-4 fw-bolder">All products</h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
 </header>
 }
-
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            @foreach (var product in Model.Products)
+            @foreach (var product in Model)
             {
 
                 <div class="col mb-5">
@@ -34,11 +27,9 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                               
-                                    <h5 class="fw-bolder">
-                                        <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
-                                    </h5>
-                              
+                                <h5 class="fw-bolder">
+                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
+                                </h5>
                                 <p>@product.Description</p>
                                 <h3>@product.Price</h3>
                             </div>
