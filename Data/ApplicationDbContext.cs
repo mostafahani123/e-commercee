@@ -19,5 +19,6 @@ namespace e_commercee.Data
         public DbSet<Address> Address { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
